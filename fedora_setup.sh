@@ -25,6 +25,33 @@ gnome_settings_sctions() {
 	echo "Gnome Settings done."
 }
 
+git_actions() {
+	git config --global credential.helper 'cache --timeout=54000'
+}
+powerline_actions() {
+sudo cat <<-'EOF' >> /etc/bashrc
+if [ -f `which powerline-daemon` ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  . /usr/share/powerline/bash/powerline.sh
+fi
+EOF
+
+cat <<-'EOF' > ~/.config/powerline/config.json
+{
+    "ext": {
+        "shell": {
+            "theme": "default_leftonly"
+        }
+    }
+}
+EOF
+powerline-daemon --replace
+
+}
+
+
 package_actions() {
 	sudo dnf -y install fedora-workstation-repositories &&\
 	sudo dnf -y config-manager --set-enabled google-chrome &&\
@@ -32,6 +59,8 @@ package_actions() {
 	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget &&\
 	sudo dnf -y groupinstall "Development Tools" &&\
 	sudo dnf -y remove abrt*
+	git_actions
+	powerline_actions
 }
 
 macos_documents() {
