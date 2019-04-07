@@ -29,7 +29,7 @@ git_actions() {
 	git config --global credential.helper 'cache --timeout=54000'
 }
 powerline_actions() {
-sudo cat <<-'EOF' >> /etc/bashrc
+sudo bash -c 'cat > /etc/bashrc' << EOF
 if [ -f `which powerline-daemon` ]; then
   powerline-daemon -q
   POWERLINE_BASH_CONTINUATION=1
@@ -37,8 +37,8 @@ if [ -f `which powerline-daemon` ]; then
   . /usr/share/powerline/bash/powerline.sh
 fi
 EOF
-
-cat <<-'EOF' > ~/.config/powerline/config.json
+mkdir -p ~/.config/powerline
+cat <<'EOF' >~/.config/powerline/config.json
 {
     "ext": {
         "shell": {
@@ -56,7 +56,7 @@ package_actions() {
 	sudo dnf -y install fedora-workstation-repositories &&\
 	sudo dnf -y config-manager --set-enabled google-chrome &&\
 	sudo dnf -y update &&\
-	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget &&\
+	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget gnome-tweak &&\
 	sudo dnf -y groupinstall "Development Tools" &&\
 	sudo dnf -y remove abrt*
 	git_actions
