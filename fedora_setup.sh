@@ -56,7 +56,7 @@ package_actions() {
 	sudo dnf -y install fedora-workstation-repositories &&\
 	sudo dnf -y config-manager --set-enabled google-chrome &&\
 	sudo dnf -y update &&\
-	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget gnome-tweak &&\
+	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget gnome-tweaks gnome-shell-extension-user-theme.noarch chrome-gnome-shell.x86_64 gnome-shell-extension-system-monitor-applet.noarch &&\
 	sudo dnf -y groupinstall "Development Tools" &&\
 	sudo dnf -y remove abrt*
 	git_actions
@@ -66,10 +66,10 @@ package_actions() {
 macos_documents() {
 	ME=$( whoami )
 	sudo apfs-fuse /dev/sdc2 /mnt | true &&\
-	sudo rsync -ah --info=progress2 --exclude=".*" --exclude="createRamDisk*" --exclude="WoT*" --exclude="Microsoft*" /mnt/root/Users/joe/Documents/ /home/$ME/Dokumenty &&\
-	sudo rsync -ah --info=progress2 --exclude=".*" /mnt/root/Users/joe/Pictures/ /home/$ME/Obrazy
-	sudo rsync -ah --info=progress2 --include=Tahoma* --include=SFN* --exclude=* /mnt/root/Library/Fonts/ /mnt/root/System/Library/Fonts/ /home/$ME/.fonts
-	sudo rsync -ah --min-size=1 --exclude=".*" /mnt/root/Library/Fonts/Microsoft/ /home/$ME/.fonts
+	sudo rsync -ah --info=progress2 --include=".git" --exclude=".*" --exclude="createRamDisk*" --exclude="WoT*" --exclude="Microsoft*" /mnt/root/Users/joe/Documents/ /home/$ME/Dokumenty &&\
+	sudo rsync -ah --info=progress2 --exclude=".*" /mnt/root/Users/joe/Pictures/ /home/$ME/Obrazy &&\
+	sudo rsync -ah --info=progress2 --include=Tahoma* --include=SFN* --exclude=* /mnt/root/Library/Fonts/ /mnt/root/System/Library/Fonts/ /home/$ME/.fonts &&\
+	sudo rsync -ah --min-size=1 --exclude=".*" /mnt/root/Library/Fonts/Microsoft/ /home/$ME/.fonts &&\
 	sudo chown -R $ME. /home/$ME/Dokumenty /home/$ME/.fonts /home/$ME/Obrazy &&\
 	sudo umount /mnt
 }
