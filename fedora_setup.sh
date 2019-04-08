@@ -56,7 +56,7 @@ package_actions() {
 	sudo dnf -y install fedora-workstation-repositories &&\
 	sudo dnf -y config-manager --set-enabled google-chrome &&\
 	sudo dnf -y update &&\
-	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget gnome-tweaks gnome-shell-extension-user-theme.noarch chrome-gnome-shell.x86_64 gnome-shell-extension-system-monitor-applet.noarch &&\
+	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget gnome-tweaks gnome-shell-extension-user-theme.noarch chrome-gnome-shell.x86_64 gnome-shell-extension-system-monitor-applet.noarch gtk-murrine-engine transmission-gtk &&\
 	sudo dnf -y groupinstall "Development Tools" &&\
 	sudo dnf -y remove abrt*
 	git_actions
