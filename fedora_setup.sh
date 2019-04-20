@@ -22,6 +22,9 @@ gnome_settings_sctions() {
 	#gsettings set org.gnome.shell.overrides dynamic-workspaces false
 	gsettings set org.gnome.mutter dynamic-workspaces false
 	gsettings set org.gnome.desktop.wm.preferences num-workspaces 4
+
+	gsettings set org.gnome.software download-updates false #disable gnome software downloading updates
+	gsettings set org.gnome.software allow-updates false #disable gnome update support
 	echo "Gnome Settings done."
 }
 
@@ -56,7 +59,7 @@ package_actions() {
 	sudo dnf -y install fedora-workstation-repositories &&\
 	sudo dnf -y config-manager --set-enabled google-chrome &&\
 	sudo dnf -y update &&\
-	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget gnome-tweaks gnome-shell-extension-user-theme.noarch chrome-gnome-shell.x86_64 gnome-shell-extension-system-monitor-applet.noarch gtk-murrine-engine transmission-gtk &&\
+	sudo dnf -y install nano git mc powerline google-chrome-stable apfs-fuse autoconf automake wget gnome-tweaks gnome-shell-extension-user-theme.noarch chrome-gnome-shell.x86_64 gnome-shell-extension-system-monitor-applet.noarch gtk-murrine-engine transmission-gtk gimp inkscape &&\
 	sudo dnf -y groupinstall "Development Tools" &&\
 	sudo dnf -y remove abrt*
 	git_actions
